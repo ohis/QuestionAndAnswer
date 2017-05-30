@@ -1,0 +1,38 @@
+answeeeerrrrrrdfghj
+<div init="UC.index();UC.session()">
+ <a href="#" ng-click="UC.logout()">Logout</a>
+  <div ng-controller="QuestionController as QC" ng-init="QC.show()">
+    <a href="#!/question/{{QC.question._id}}">Go back to question</a>
+    <a href="#!/dashboard">Home</a>
+    <h1>{{QC.question.question}}</h1>
+    <div>
+      <p class="error" ng-repeat="error in QC.answers_errors">{{ error }}</p>
+  </div>
+    <form ng-submit="QC.createAnswer(QC.newAnswer,QC.question._id)">
+      <div>
+        <label>Your Answer</label>
+        <br>
+        <textarea  rows="8" cols="40" ng-model="QC.newAnswer.answer"></textarea>
+      </div>
+
+      <div>
+        <label>Supporting details
+        for you answer(optional)</label>
+        <br>
+        <br>
+        <textarea rows="8" cols="40" ng-model="QC.newAnswer.details"></textarea>
+      </div>
+
+      <div>
+        <input type="submit" name="" value="Submit">
+      </div>
+      <br>
+      <br>
+      <div>
+       <a href="#!/dashboard"><button>Cancel</button></a>
+      </div>
+    </form>
+
+
+  </div>
+</div>

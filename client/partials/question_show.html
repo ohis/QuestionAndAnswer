@@ -1,0 +1,21 @@
+showwwwwwww
+<div ng-init="UC.index()">
+    <a class="header_item float_right inline_block" href="#" ng-click="UC.logout()">Logout</a>
+
+  <div ng-controller="QuestionController as QC" ng-init = "QC.show();QC.index()">
+    <a href="#!/question/{{QC.question._id}}/answer">Answer this question</a>
+    <a href="#!/dashboard">Home</a>
+    <h1>{{QC.question.question}}</h1>
+
+    <div ng-repeat="answer in QC.question.answers | orderBy : 'likes':true">
+      <h3>{{ answer.user.name }} 's answer</h3>
+       <p>{{answer.answer}}</p>
+        <p>{{answer.details}}</p>
+         <p class="inline_block">Likes: {{ answer.likes}}</p>
+       <button  ng-click="QC.updateLikes(answer._id)">Like</button>
+    </div>
+
+
+  </div>
+
+</div>

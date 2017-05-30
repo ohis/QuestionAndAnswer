@@ -1,0 +1,39 @@
+var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
+
+var Question = mongoose.model('Question');
+var Answer = mongoose.model('Answer');
+
+var UserSchema = new mongoose.Schema({
+  name:{
+      type:String,
+      required:[true, "Name field cannot be blank."]
+  },
+  email:{
+    type:String,
+    required:[true,"Email cannot be blank."]
+  },
+  password:{
+    type:String,
+    required: [true, "password cannot be blank"]
+  },
+  questions: [{type: mongoose.Schema.Types.ObjectId,
+           ref:'Question'}],
+  answers: [{type: mongoose.Schema.Types.ObjectId,
+              ref:'Answer'}]
+            },
+{timestamps:true})
+
+UserSchema.methods.hashPassword = function(password){
+  this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+}
+
+UserSchema.methods.authenticate = function(password){
+  return bcrypt.compareSync(password,this.password)
+}
+
+UserSchema.pre('save',function(callback){
+  this.hashPassword(this.password);
+  callback();
+})
+mongoose.model('User',UserSchema);

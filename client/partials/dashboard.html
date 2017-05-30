@@ -1,0 +1,30 @@
+yooooooooooo
+<div ng-init="UC.session()">
+  <a class="header_item float_right inline_block" href="#" ng-click="UC.logout()">Logout</a>
+
+  <h3>Hi, {{ UC.current_user.name}} !</h3>
+
+  <p><a href="#!/new_question">Add a question</a></p>
+                 <h2>Search</h2>
+               <input placeholder="filter..." type="text" ng-model="Filterquestions">
+  <div ng-controller="QuestionController as QC" ng-init="QC.index()">
+    <div ng-init="QC.updateAns()">
+      <table>
+        <tr>
+          <th>Question</th>
+          <th>Answers</th>
+          <th>Action</th>
+        </tr>
+
+        <tr ng-repeat="question in QC.questions | filter : Filterquestions : strict">
+          <td>{{question.question}}</td>
+          <td>{{question.answers.length}}</td>
+          <td><a href="#!/question/{{question._id}}">Show</a></td>
+          <td><a href="#!/question/{{question._id}}/answer">Answer</a></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+</div>

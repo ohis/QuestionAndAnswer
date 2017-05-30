@@ -1,0 +1,31 @@
+<div ng-init="UC.session()">
+  <a href="#!/dashboard">Home</a>    <a href="#" ng-click="UC.logout()">Logout</a>
+
+
+<h1>New Question</h1>
+  <form ng-submit="QC.create(QC.newQuestion)">
+    <div>
+      <label>Question</label>
+      <br>
+      <br>
+      <textarea  rows="8" cols="40" ng-model="QC.newQuestion.question"></textarea>
+    </div>
+  <br>
+  <br>
+    <div>
+      <label>Description(optional)</label>
+      <br>
+      <br>
+      <textarea rows="8" cols="40"  ng-model="QC.newQuestion.Description"></textarea>
+    </div>
+
+    <div>
+      <input type="submit" name="" value="Submit">
+    </div>
+
+  </form>
+
+  <div>
+    <p class="error" ng-repeat="error in QC.questions_error">{{ error }}</p>
+
+</div>
