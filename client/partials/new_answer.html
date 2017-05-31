@@ -8,6 +8,9 @@ answeeeerrrrrrdfghj
     <div>
       <p class="error" ng-repeat="error in QC.answers_errors">{{ error }}</p>
   </div>
+  <div>
+    <p class="error" ng-repeat="error in QC.answer_error">{{ error }}</p>
+</div>
     <form ng-submit="QC.createAnswer(QC.newAnswer,QC.question._id)">
       <div>
         <label>Your Answer</label>

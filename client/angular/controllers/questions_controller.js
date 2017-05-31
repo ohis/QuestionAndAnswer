@@ -6,6 +6,7 @@ app.controller('QuestionController', function($location,$routeParams,QuestionFac
   self.question = [];
   self.answer = [];
   self.answers_errors = [];
+  self.answer_error = [];
 
 
   self.index = function(){
@@ -36,28 +37,35 @@ app.controller('QuestionController', function($location,$routeParams,QuestionFac
     console.log(newAnswer);
   // self.answer = newAnswer.answer;
     //console.log(self.answer);
-     newAnswer.question = question_id;
+
   //  console.log(newAnswer.question);
     UserFactory.session(function(user){
       console.log("getting user");
 
-      newAnswer.user = user;
-    //  console.log(newAnswer.user);
-      AnswerFactory.create(newAnswer, function(res){
-        if(res.data.errors){
-          for(key in res.data.errors){
-            var error = res.data.errors[key];
-            self.answers_errors.push(error.message);
+       if(newAnswer == undefined){
+         self.answer_error = ['answer field cannot be blank'];
+       }else{
+
+         //  newAnswer.user = user;
+         //  console.log(newAnswer.user);
+         AnswerFactory.create(newAnswer, function(res){
+          if(res.data.errors){
+            for(key in res.data.errors){
+              var error = res.data.errors[key];
+              self.answers_errors.push(error.message);
+            }
+          }else{
+            //self.answer = newAnswer.answer;
+          //  console.log(self.answer);
+             newAnswer.question = question_id;
+            self.index();
+
+            $location.url('/dashboard');
           }
-        }else{
-          //self.answer = newAnswer.answer;
-        //  console.log(self.answer);
+         })
 
-          self.index();
 
-          $location.url('/dashboard');
-        }
-      })
+       }
     })
   }
   self.create = function(newQuestion){
