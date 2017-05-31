@@ -45,7 +45,7 @@ app.controller('QuestionController', function($location,$routeParams,QuestionFac
        if(newAnswer == undefined){
          self.answer_error = ['answer field cannot be blank'];
        }else{
-
+              newAnswer.question = question_id;
          //  newAnswer.user = user;
          //  console.log(newAnswer.user);
          AnswerFactory.create(newAnswer, function(res){
@@ -57,7 +57,7 @@ app.controller('QuestionController', function($location,$routeParams,QuestionFac
           }else{
             //self.answer = newAnswer.answer;
           //  console.log(self.answer);
-             newAnswer.question = question_id;
+
             self.index();
 
             $location.url('/dashboard');
