@@ -3,4 +3,7 @@
 
 # Technologies:
 > JavaScript, Node.js, Express, Mongo, Mongoose, AngularJS, and Bootstrap
->
+# Steps to run this project are:
+- git clone this project 
+- To run this project you would have to download Nodejs and MongoDB
+- 
