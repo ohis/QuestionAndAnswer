@@ -6,4 +6,5 @@
 # Steps to run this project are:
 - git clone this project 
 - To run this project you would have to download Nodejs and MongoDB
-- 
+- go to where you cloned the project and type node in your terminal
+- Also make sure you are in the directory where you downladed Mongodb
